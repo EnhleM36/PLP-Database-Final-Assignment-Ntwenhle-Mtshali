@@ -6,11 +6,11 @@
 This project is a comprehensive **MySQL database schema** designed for managing operations in a **blood lab or blood bank**. I am  A laboratory technician and have used details of the different processes of capturing data.The database includes key entities and relationships for tracking patients, doctors, lab staff, blood samples, test orders, test results, storage, audit logs, and alerting systems for abnormal test results. The schema supports advanced features such as:
 
 - Role-based lab staff (Admins, Technicians, QA, Managers)
-- Tracking of doctors who issue test orders
-- Sample collection and storage details
-- Automated alerts for abnormal lab results
-- Barcode/QR code tracking for samples
-- Full audit trail of system activity
+- Tracking of doctors who issue test orders.
+- Sample collection and storage details.
+- Automated alerts for abnormal lab results.
+- Barcode/QR code tracking for samples.
+- Full audit trail of system activity.
 
 ---
 

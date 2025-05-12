@@ -1,8 +1,8 @@
--- Create database for a Pathology Blood Lab
+-- Create database for a Pathology Blood Lab.
 -- CREATE DATABASE BloodlabDB;
 -- USE BloodlabDB;
 
--- Table for referring doctors
+-- Table for referring doctors.
 CREATE TABLE Doctors (
     DoctorID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE Doctors (
     FacilityName VARCHAR(100)
 );
 
--- Table for lab staff with roles
+-- Table for lab staff with roles.
 CREATE TABLE LabStaff (
     StaffID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE LabStaff (
     Phone VARCHAR(20)
 );
 
--- Table for patients
+-- Table for patients.
 CREATE TABLE Patients (
     PatientID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -33,14 +33,14 @@ CREATE TABLE Patients (
     ContactInfo TEXT NOT NULL
 );
 
--- Table for sample collection locations
+-- Table for sample collection locations.
 CREATE TABLE SampleLocations (
     LocationID INT AUTO_INCREMENT PRIMARY KEY,
     FacilityName VARCHAR(100),
     ContactInfo TEXT NOT NULL
 );
 
--- Table for collected samples
+-- Table for collected samples.
 CREATE TABLE Samples (
     SampleID INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT,
@@ -84,7 +84,7 @@ CREATE TABLE TestTypes (
     FOREIGN KEY (CategoryID) REFERENCES TestCategories(CategoryID)
 );
 
--- Table for orders (missing earlier in your code)
+-- Table for doctors test orders.
 CREATE TABLE Orders (
     OrderID INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE Orders (
     FOREIGN KEY (CreatedBy) REFERENCES LabStaff(StaffID)
 );
 
--- Table for tests ordered
+-- Table for tests ordered.
 CREATE TABLE OrderTests (
     OrderTestID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE OrderTests (
     FOREIGN KEY (OrderedBy) REFERENCES Doctors(DoctorID)
 );
 
--- Table for test results
+-- Table for test results.
 CREATE TABLE TestResults (
     ResultID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE TestResults (
     FOREIGN KEY (VerifiedBy) REFERENCES LabStaff(StaffID)
 );
 
--- Table for critical notifications
+-- Table for critical notifications.
 CREATE TABLE CriticalNotifications (
     NotificationID INT AUTO_INCREMENT PRIMARY KEY,
     ResultID INT NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE CriticalNotifications (
     FOREIGN KEY (ReportedTo) REFERENCES Doctors(DoctorID)
 );
 
--- Table for instruments
+-- Table for instruments.
 CREATE TABLE Instruments (
     InstrumentID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE Instruments (
     UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table for quality control
+-- Table for quality control.
 CREATE TABLE QualityControl (
     QCID INT AUTO_INCREMENT PRIMARY KEY,
     TestID INT NOT NULL,
@@ -193,7 +193,7 @@ CREATE TABLE QualityControl (
 );
 
 
--- Table for report templates
+-- Table for report templates.
 CREATE TABLE ReportTemplates (
     TemplateID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL UNIQUE,
@@ -204,7 +204,7 @@ CREATE TABLE ReportTemplates (
     UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Table for report generation
+-- Table for report generation.
 CREATE TABLE Reports (
     ReportID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT NOT NULL,
@@ -224,7 +224,7 @@ CREATE TABLE Reports (
     FOREIGN KEY (GeneratedBy) REFERENCES LabStaff(StaffID)
 );
 
--- Table for audit logs ( to record and track user activity)
+-- Table for audit logs ( to record and track user activity).
 CREATE TABLE AuditLogs (
     LogID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT NOT NULL,
