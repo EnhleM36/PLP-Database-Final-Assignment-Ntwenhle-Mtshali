@@ -1,6 +1,6 @@
 -- Create database for a Pathology Blood Lab.
--- CREATE DATABASE BloodlabDB;
--- USE BloodlabDB;
+CREATE DATABASE BloodlabDB;
+USE BloodlabDB;
 
 -- Table for referring doctors.
 CREATE TABLE Doctors (
@@ -30,13 +30,14 @@ CREATE TABLE Patients (
     DateOfBirth DATE NOT NULL,
     Gender ENUM('Male', 'Female', 'Other'),
     Address VARCHAR(255),
-    ContactInfo TEXT NOT NULL
+    Phone VARCHAR(20) NOT NULL,
+    Email VARCHAR(50)
 );
 
 -- Table for sample collection locations.
 CREATE TABLE SampleLocations (
     LocationID INT AUTO_INCREMENT PRIMARY KEY,
-    FacilityName VARCHAR(100),
+    FacilityName VARCHAR(100) NOT NULL,
     ContactInfo TEXT NOT NULL
 );
 
@@ -49,9 +50,9 @@ CREATE TABLE Samples (
     LocationID INT,
     Barcode VARCHAR(100) UNIQUE,
     SampleType VARCHAR(50),
-    CollectedDate DATETIME,
-    ReceivedDate DATETIME,
-    ProcessedDate DATETIME,
+    CollectedDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ReceivedDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ProcessedDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     StorageLocation VARCHAR(100),
     CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -128,10 +129,9 @@ CREATE TABLE TestResults (
     TextResult TEXT,
     Units VARCHAR(20),
     ResultFlag ENUM('H', 'L', 'A', 'N'),
-    ReferenceRangeID INT,
     AnalyzedDate DATETIME NOT NULL,
-    VerifiedDate DATETIME,
-    InstrumentID VARCHAR(50),
+    VerifiedDate DATETIME NOT NULL,
+    InstrumentID VARCHAR(50) NOT NULL,
     CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
