@@ -43,4 +43,7 @@ Tools: MySQL Workbench, CLI
 📬 Contact
 For questions or contributions, feel free to reach out or fork this project.
 
-#### ADD ERD Diagram ###
+#### BloodLab ERD Diagram ###
+
+![bloodlabERD](https://github.com/user-attachments/assets/54e5bb9a-3c27-4231-87f2-79965d007881)
+
